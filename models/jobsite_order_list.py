@@ -4,7 +4,7 @@ from odoo import models, fields, api
 class jobsite_order_list(models.Model):
     _inherit = 'jobsite'
 
-    sale_orders = fields.One2many('sale.order', 'jobsite_id', 'Job Orders',domain=['|', ('active', '=', True), ('active', '=', False)],
+    sale_orders = fields.One2many('sale.order', 'jobsite_id', 'Job Orders',domain=['|', ('active', '=', True), ('active', '=', False),('job_order','!=',False)],
         context={'active_test': False})
 
     active_orders = fields.Integer(string='Active Orders',compute='_count_active_orders')
