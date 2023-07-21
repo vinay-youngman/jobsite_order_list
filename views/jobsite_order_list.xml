@@ -1,0 +1,36 @@
+<odoo>
+<!--    <record id ="view_jobsite_order_list_tree_inherit" model="ir.ui.view">-->
+<!--        <field name ="model">jobsite</field>-->
+<!--        <field name="name">jobsite.order.list.tree</field>-->
+<!--        <field name="inherit_id" ref="jobsites.view_jobsite_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='siteteam']" position="after">-->
+<!--            <field name ='active_orders'></field>-->
+<!--            <field name='closed_orders'></field>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="view_jobsite_order_list_inherit" model="ir.ui.view">
+        <field name="name">jobsite.order.list.inherit</field>
+        <field name="model">jobsite</field>
+        <field name="inherit_id" ref="jobsites.view_jobsite_create_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='godown_id']" position="after">
+            <field name ='active_orders'></field>
+            <field name='closed_orders'></field>
+           </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Sale Orders">
+                    <field name="sale_orders">
+                        <tree  create="false" delete="false" decoration-success="active == True" decoration-danger="active == False">
+                            <field name="job_order"/>
+                            <field name="active"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

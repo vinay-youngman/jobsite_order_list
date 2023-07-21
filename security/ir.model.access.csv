@@ -1,0 +1,2 @@
+access_jobsite_order_list_group_user,jobsite_order_list group_user,jobsite_order_list.model_jobsite_order_list,base.group_user,1,1,1,1
+access_jobsite_order_list_group_partner_manager,jobsite_order_list group_partner_manager,jobsite_order_list.model_jobsite_order_list,base.group_partner_manager,1,1,1,1
