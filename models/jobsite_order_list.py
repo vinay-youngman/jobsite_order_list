@@ -16,22 +16,38 @@ class jobsite_order_list(models.Model):
     def _count_closed_orders(self):
         self.closed_orders = sum(1 for sale_order in self.sale_orders if not sale_order.active)
 
-
-
-    def calculate_marker_color(self):
-        if self.active_orders == 0:
-            if self.closed_orders == 0:
+    def calculate_marker_color(jobsite):
+        if jobsite.active_orders==0:
+            if jobsite.closed_orders==0:
                 return 'black'
-            elif self.closed_orders > 0:
+            elif jobsite.closed_orders>0:
                 return 'blue'
-        elif 1 <= self.active_orders <= 2:
+        elif jobsite.active_orders>=1 and jobsite.active_orders<=2:
             return 'red'
-        elif 3 <= self.active_orders <= 5:
+        elif jobsite.active_orders>=3 and jobsite.active_orders<=5:
             return 'orange'
-        elif 6 <= self.active_orders <= 15:
+        elif jobsite.active_orders>=6 and jobsite.active_orders<=15:
             return 'yellow'
         else:
             return 'green'
+
+
+
+
+        #
+        # if jobsite.active_orders == 0:
+        #     if jobsite.closed_orders == 0:
+        #         return 'black'
+        #     elif jobsite.closed_orders > 0:
+        #         return 'blue'
+        # elif 1 <= jobsite.active_orders <= 2:
+        #     return 'red'
+        # elif 3 <= jobsite.active_orders <= 5:
+        #     return 'orange'
+        # elif 6 <= jobsite.active_orders <= 15:
+        #     return 'yellow'
+        # else:
+        #     return 'green'
 
 
 

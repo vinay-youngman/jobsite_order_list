@@ -20,6 +20,7 @@
 
     'data': [
         #'security/ir.model.access.csv',
+        'data/cron_jobsite_marker_color_sync.xml',
         'views/jobsite_order_list.xml',
     ],
 
