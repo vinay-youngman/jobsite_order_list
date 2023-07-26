@@ -1,20 +1,29 @@
 from odoo import models, fields, api
 
-
-class jobsite_order_list(models.Model):
+class JobsiteOrderList(models.Model):
     _inherit = 'jobsite'
 
-    sale_orders = fields.One2many('sale.order', 'jobsite_id', 'Job Orders',domain=['|', ('active', '=', True), ('active', '=', False),('job_order','!=',False)],
-        context={'active_test': False} ,readonly=True)
+    sale_orders = fields.One2many(
+        'sale.order', 'jobsite_id', 'Job Orders',
+        domain=['|', ('active', '=', True), ('active', '=', False), ('job_order', '!=', False)],
+        context={'active_test': False},
+        readonly=True,  # Keep this attribute if required by your application
+    )
 
-    active_orders = fields.Integer(string='Active Orders',compute='_count_active_orders')
-    closed_orders= fields.Integer(string='Closed Orders',compute='_count_closed_orders')
+    active_orders = fields.Integer(string='Active Orders', compute='_compute_active_orders', store=False)
+    closed_orders = fields.Integer(string='Closed Orders', compute='_compute_closed_orders', store=False)
 
-    def _count_active_orders(self):
-        self.active_orders = sum(1 for sale_order in self.sale_orders if sale_order.active)
+    @api.depends('sale_orders.active')
+    def _compute_active_orders(self):
+        for jobsite in self:
+            jobsite.active_orders = sum(1 for sale_order in jobsite.sale_orders if sale_order.active)
 
-    def _count_closed_orders(self):
-        self.closed_orders = sum(1 for sale_order in self.sale_orders if not sale_order.active)
+    @api.depends('sale_orders.active')
+    def _compute_closed_orders(self):
+        for jobsite in self:
+            jobsite.closed_orders = sum(1 for sale_order in jobsite.sale_orders if not sale_order.active)
+
+
 
     def calculate_marker_color(jobsite):
         if jobsite.active_orders==0:

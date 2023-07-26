@@ -1,15 +1,15 @@
 <odoo>
-<!--    <record id ="view_jobsite_order_list_tree_inherit" model="ir.ui.view">-->
-<!--        <field name ="model">jobsite</field>-->
-<!--        <field name="name">jobsite.order.list.tree</field>-->
-<!--        <field name="inherit_id" ref="jobsites.view_jobsite_tree"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <xpath expr="//field[@name='siteteam']" position="after">-->
-<!--            <field name ='active_orders'></field>-->
+    <record id ="view_jobsite_order_list_tree_inherit" model="ir.ui.view">
+        <field name ="model">jobsite</field>
+        <field name="name">jobsite.order.list.tree</field>
+        <field name="inherit_id" ref="jobsites.view_jobsite_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='siteteam']" position="after">
+            <field name ='active_orders'></field>
 <!--            <field name='closed_orders'></field>-->
-<!--            </xpath>-->
-<!--        </field>-->
-<!--    </record>-->
+            </xpath>
+        </field>
+    </record>
 
     <record id="view_jobsite_order_list_inherit" model="ir.ui.view">
         <field name="name">jobsite.order.list.inherit</field>

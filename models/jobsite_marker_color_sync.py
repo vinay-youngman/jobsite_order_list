@@ -10,7 +10,6 @@ import logging
 from urllib.request import urlopen
 import time
 import base64
-from .jobsite_order_list import jobsite_order_list
 
 _logger = logging.getLogger(__name__)
 
