@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo import models, fields, api
 class jobsite_order_list(models.Model):
     _inherit = 'jobsite'
 
@@ -19,10 +20,9 @@ class jobsite_order_list(models.Model):
         default='virgin',
         tracking=True,
         compute='_compute_jobsite_status',
-        store = True
     )
 
-    @api.depends('active_orders', 'closed_orders')
+    @api.onchange('active_orders','closed_orders')
     def _compute_jobsite_status(self):
         for record in self:
             if record.active_orders == 0 and record.closed_orders == 0:
@@ -31,9 +31,9 @@ class jobsite_order_list(models.Model):
             elif record.active_orders > 0:
                 record.jobsite_status = 'active'
                 record.active = 'True'
-            else:
-                record.jobsite_status = 'closed'
-                record.active = 'False'
+            elif record.active_orders==0 and record.closed_orders>0:
+                 if record.jobsite.active==False:
+                     record.jobsite_status = 'closed'
 
 
     def _count_active_orders(self):

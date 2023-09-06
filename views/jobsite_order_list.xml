@@ -9,7 +9,7 @@
             <xpath expr="//field[@name='godown_id']" position="after">
                 <field name="active_orders"/>
                 <field name="closed_orders"/>
-<!--                <field name="jobsite_status" readonly ="1"/>-->
+                <field name="jobsite_status"/>
             </xpath>
 
             <xpath expr="//notebook" position="inside">
