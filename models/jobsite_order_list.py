@@ -5,8 +5,8 @@ class jobsite_order_list(models.Model):
     sale_orders = fields.One2many('sale.order', 'jobsite_id', 'Job Orders',domain=['|', ('active', '=', True), ('active', '=', False),('job_order','!=',False)],
         context={'active_test': False} ,readonly=True)
 
-    active_orders = fields.Integer(string='Active Orders',compute='_count_active_orders')
-    closed_orders= fields.Integer(string='Closed Orders',compute='_count_closed_orders')
+    active_orders = fields.Integer(string='Active Orders')
+    closed_orders= fields.Integer(string='Closed Orders')
     STATUS_SELECTION = [
         ('virgin', 'Virgin'),
         ('active', 'Active'),
